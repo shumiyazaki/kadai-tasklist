@@ -6,8 +6,8 @@
 
 
 
-<div class="row">
-        <div class="col-xs-12 col-offset-2 col-sm-8 col-offset-4 col-md-8 col-offset-4 col-lg-6 col-offset-6">
+        <div class="row">
+         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
  
 
 
