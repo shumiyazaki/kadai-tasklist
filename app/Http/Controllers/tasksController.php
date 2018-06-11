@@ -79,7 +79,9 @@ class tasksController extends Controller
     public function show($id)
     {
           $task = task::find($id);
-
+       if (\Auth::user()->id !== $task->user_id){
+           return redirect('/');
+       }
         return view('tasks.show', [
             'task' => $task,
             ]);
@@ -95,7 +97,10 @@ class tasksController extends Controller
     public function edit($id)
     {
         $task = task::find($id);
-
+        
+     if (\Auth::user()->id !== $task->user_id){
+         return redirect('/');
+     }
         return view('tasks.edit', [
             'task' => $task,
         ]);
@@ -115,13 +120,15 @@ class tasksController extends Controller
             'status' => 'required|max:10',
             'content' => 'required|max:10',
         ]);
-
         
         $task = task::find($id);
+        
+         if (\Auth::user()->id === $task->user_id)
+        {
         $task->status = $request->status;  
         $task->content = $request->content;
         $task->save();
-
+        }
         return redirect('/');
     }
 
@@ -134,8 +141,10 @@ class tasksController extends Controller
     public function destroy($id)
     {
         $task = task::find($id);
-        $task->delete();
 
+ if (\Auth::user()->id === $task->user_id){
+            $task->delete();
+        }
         return redirect('/');
     }
 }
